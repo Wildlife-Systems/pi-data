@@ -1,0 +1,5 @@
+#!/bin/bash
+
+chmod +x /usr/bin/pi-data
+
+exit 0
