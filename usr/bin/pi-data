@@ -1,0 +1,13 @@
+#!/bin/bash
+
+case $1 in
+    model)
+        echo $(grep -oP 'Revision\s*:\s*\K[^ ]*' /proc/cpuinfo)
+        ;;
+    serial)
+        echo $(grep -oP 'Serial\s*:\s*\K[^ ]*' /proc/cpuinfo)
+        ;;
+    *)
+        echo "Usage: $0 {model|serial}"
+        exit 1
+esac

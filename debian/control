@@ -1,0 +1,15 @@
+Source: pi-data
+Section: utils
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+Maintainer: Ed Baker <ed@ebaker.me.uk>
+Description: Raspberry Pi Data
+ Easily get identification and configuration data from a Raspberry Pi.
+
+
+Package: ws-node
+Priority: utils 
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Raspberry Pi Data
+ Easily get identification and configuration data from a Raspberry Pi.
