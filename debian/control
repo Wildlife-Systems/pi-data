@@ -7,7 +7,7 @@ Description: Raspberry Pi Data
  Easily get identification and configuration data from a Raspberry Pi.
 
 
-Package: ws-node
+Package: pi-data
 Priority: utils 
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
