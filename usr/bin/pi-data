@@ -7,7 +7,18 @@ case $1 in
     serial)
         echo $(grep -oP 'Serial\s*:\s*\K[^ ]*' /proc/cpuinfo)
         ;;
+    config_txt)
+        if [ -f /boot/firmware/config.txt ]; then
+            echo "/boot/firmware/config.txt"
+            exit 0
+        fi
+        if [ -f /boot/config.txt ]; then
+            echo "/boot/config.txt"
+            exit 0
+        fi
+        exit 1
+        ;;
     *)
-        echo "Usage: $0 {model|serial}"
+        echo "Usage: $0 {model|serial|config_txt}"
         exit 1
 esac
