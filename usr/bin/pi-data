@@ -30,7 +30,20 @@ case $1 in
             exit 0
         fi
         ;;
+    hostname)
+        if [ -f /etc/hostname ]; then
+            echo $(cat /etc/hostname)
+            exit 0
+        fi
+        if [[ type -t hostname == "file" ]]; then
+            echo $(hostname)
+            exit 0
+        fi
+        if [[type -t hostnamectl == "file" ]]; then
+            echo $(hostnamectl hostname)
+            exit 0
+        fi
     *)
-        echo "Usage: $0 {model|serial|config_txt|password}"
+        echo "Usage: $0 {model|serial|config_txt|password|hostname}"
         exit 1
 esac
