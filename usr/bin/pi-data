@@ -35,11 +35,11 @@ case $1 in
             echo $(cat /etc/hostname)
             exit 0
         fi
-        if [[ type -t hostname == "file" ]]; then
+        if [[ $(type -t hostname) == "file" ]]; then
             echo $(hostname)
             exit 0
         fi
-        if [[type -t hostnamectl == "file" ]]; then
+        if [[ $(type -t hostnamectl) == "file" ]]; then
             echo $(hostnamectl hostname)
             exit 0
         fi
