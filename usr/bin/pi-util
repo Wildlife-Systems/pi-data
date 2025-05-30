@@ -6,6 +6,10 @@ case $1 in
             netplan)
                 sudo netplan apply
                 ;;
+            *)
+                echo "Usage: $0 reset-network {netplan}"
+                exit 1
+                ;;
     ;;
 
     *)
