@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+    reset-network)
+        case $2 in
+            netplan)
+                sudo netplan apply
+    ;;
+
+    *)
+        echo "Usage: $0 {reset-network}"
+        exit 1
+        ;;
+esac
