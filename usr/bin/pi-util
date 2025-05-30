@@ -10,7 +10,8 @@ case $1 in
                 echo "Usage: $0 reset-network {netplan}"
                 exit 1
                 ;;
-
+        esac
+        ;;
     *)
         echo "Usage: $0 {reset-network}"
         exit 1
