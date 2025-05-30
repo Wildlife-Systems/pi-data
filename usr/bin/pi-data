@@ -43,6 +43,7 @@ case $1 in
             echo $(hostnamectl hostname)
             exit 0
         fi
+	;;
     *)
         echo "Usage: $0 {model|serial|config_txt|password|hostname}"
         exit 1
