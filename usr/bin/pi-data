@@ -48,6 +48,6 @@ case $1 in
         echo $(ip route | grep default | awk '{print $3}')
         ;;
     *)
-        echo "Usage: $0 {model|serial|config_txt|password|hostname}"
+        echo "Usage: $0 {model|serial|config_txt|password|hostname|default-gateway}"
         exit 1
 esac
