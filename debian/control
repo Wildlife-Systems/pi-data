@@ -1,15 +1,16 @@
 Source: pi-data
-Section: utils
+Section: admin
 Priority: optional
-Build-Depends: debhelper-compat (= 13)
 Maintainer: Ed Baker <ed@ebaker.me.uk>
+Standards-Version: 4.6.2
+Build-Depends: debhelper-compat (= 13)
 Description: Raspberry Pi Data
  Easily get identification and configuration data from a Raspberry Pi.
 
 
 Package: pi-data
-Priority: utils 
 Architecture: all
+Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}, whois
 Description: Raspberry Pi Data
  Easily get identification and configuration data from a Raspberry Pi.
