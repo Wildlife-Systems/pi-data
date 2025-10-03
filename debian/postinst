@@ -1,6 +1,9 @@
 #!/bin/bash
+set -e
 
 chmod +x /usr/bin/pi-data
 chmod +x /usr/bin/pi-util
+
+#DEBHELPER#
 
 exit 0
