@@ -1,0 +1,37 @@
+.TH PI-DATA 8 "October 2024" "pi-data 0.1.0"
+.SH NAME
+pi-data \- query Raspberry Pi device information
+.SH SYNOPSIS
+.B pi-data
+.I COMMAND
+.SH DESCRIPTION
+The
+.B pi-data
+utility reports basic Raspberry Pi configuration data via subcommands.
+.SH COMMANDS
+.TP
+.B model
+Print the board revision code.
+.TP
+.B serial
+Print the board serial number.
+.TP
+.B config_txt
+Output the path to the active
+.I config.txt
+file.
+.TP
+.B password
+Report whether the default "pi" account password is unchanged.
+.TP
+.B hostname
+Print the current hostname.
+.TP
+.B default-gateway
+Print the default IPv4 gateway.
+.SH EXIT STATUS
+Returns zero on success, non-zero on error.
+.SH AUTHOR
+Ed Baker <ed@ebaker.me.uk>
+.SH LICENSE
+GNU General Public License version 3 or later.

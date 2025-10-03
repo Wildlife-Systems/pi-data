@@ -1,0 +1,21 @@
+.TH PI-UTIL 8 "October 2024" "pi-data 0.1.0"
+.SH NAME
+pi-util \- Raspberry Pi utility helpers
+.SH SYNOPSIS
+.B pi-util
+.I COMMAND
+.SH DESCRIPTION
+The
+.B pi-util
+helper executes maintenance actions for Raspberry Pi systems.
+.SH COMMANDS
+.TP
+.B reset-network netplan
+Reapply network configuration using
+.BR netplan (8).
+.SH EXIT STATUS
+Returns zero on success, non-zero on error.
+.SH AUTHOR
+Ed Baker <ed@ebaker.me.uk>
+.SH LICENSE
+GNU General Public License version 3 or later.
