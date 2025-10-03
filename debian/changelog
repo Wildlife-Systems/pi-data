@@ -1,23 +1,23 @@
-pi-data (0.1.0) UNRELEASED; urgency=medium
+pi-data (0.1.0) unstable; urgency=medium
 
   * pi-util
   * pi-data default-gateway
 
  -- Ed Baker <ed@ebaker.me.uk>  Fri, 30 May 2025 13:37:21 +0100
 
-pi-data (0.0.4) stable; urgency=medium
+pi-data (0.0.4) unstable; urgency=medium
 
   * Hostname
 
  -- Ed Baker <ed@ebaker.me.uk>  Fri, 23 May 2025 13:38:28 +0100
 
-pi-data (0.0.3) stable; urgency=medium
+pi-data (0.0.3) unstable; urgency=medium
 
   * Check for default password
 
  -- Ed Baker <ed@ebaker.me.uk>  Fri, 23 May 2025 10:39:45 +0100
 
-pi-data (0.0.2) stable; urgency=medium
+pi-data (0.0.2) unstable; urgency=medium
 
   * config_txt 
 
