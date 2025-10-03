@@ -1,9 +1,10 @@
-pi-data (0.1.0) UNRELEASED; urgency=medium
+pi-data (0.1.1) UNRELEASED; urgency=medium
 
   * pi-util
   * pi-data default-gateway
+  * cleanup
 
- -- Ed Baker <ed@ebaker.me.uk>  Fri, 30 May 2025 13:37:21 +0100
+ -- Edward Baker <edwab@unp-pi-12.nhm.ac.uk>  Fri, 03 Oct 2025 16:00:24 +0100
 
 pi-data (0.0.4) UNRELEASED; urgency=medium
 
