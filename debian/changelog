@@ -1,3 +1,10 @@
+pi-data (0.1.0) UNRELEASED; urgency=medium
+
+  * pi-util
+  * pi-data default-gateway
+
+ -- Ed Baker <ed@ebaker.me.uk>  Fri, 30 May 2025 13:37:21 +0100
+
 pi-data (0.0.4) stable; urgency=medium
 
   * Hostname
