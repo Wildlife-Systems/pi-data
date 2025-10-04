@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+﻿#!/usr/bin/env bash
 
 case $1 in
     model)
@@ -60,7 +60,7 @@ case $1 in
         echo "pi-data $ver"
         exit 0
         ;;
-    *|--help|-h)
+    --help|-h|*)
         echo "Usage: $0 {model|serial|config_txt|password|hostname|default-gateway}"
         exit 1
         ;;
