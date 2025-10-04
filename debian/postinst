@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
 
-chmod +x /usr/bin/pi-data
-chmod +x /usr/bin/pi-util
-
+# No need to chmod files here; dpkg sets file modes when installing.
 #DEBHELPER#
 
 exit 0

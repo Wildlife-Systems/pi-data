@@ -4,6 +4,9 @@ case $1 in
     model)
         grep -oP 'Revision\s*:\s*\K[^ ]*' /proc/cpuinfo
         ;;
+    model_name)
+        grep -oP 'Model\s*:\s*\K.*' /proc/cpuinfo
+        ;;
     serial)
         grep -oP 'Serial\s*:\s*\K[^ ]*' /proc/cpuinfo
         ;;
@@ -31,23 +34,37 @@ case $1 in
         fi
         ;;
     hostname)
-        if [ -f /etc/hostname ]; then
-            cat /etc/hostname
+        if [ -r /etc/hostname ]; then
+            sed -n '1p' /etc/hostname
             exit 0
         fi
-        if [[ $(type -t hostname) == "file" ]]; then
-            hostname
-            exit 0
+        if command -v hostnamectl >/dev/null 2>&1; then
+            hostnamectl --static 2>/dev/null && exit 0 || true
         fi
-        if [[ $(type -t hostnamectl) == "file" ]]; then
-            hostnamectl hostname
-            exit 0
+        if command -v hostname >/dev/null 2>&1; then
+            hostname --short 2>/dev/null && exit 0 || true
         fi
+        exit 1
         ;;
     default-gateway)
         ip route | grep default | awk '{print $3}'
         ;;
-    *)
+    --version|-V)
+        # try dpkg-parsechangelog (from dpkg-dev), otherwise parse first line of debian/changelog
+        if command -v dpkg-parsechangelog >/dev/null 2>&1; then
+            ver=$(dpkg-parsechangelog --show-field Version 2>/dev/null || true)
+        else
+            # parse 'package (version) ...' from the first non-empty line robustly
+            ver=$(awk 'NF && match($0, /^[^ ]+ \(([^(]+)\)/, m) { print m[1]; exit }' debian/changelog 2>/dev/null || true)
+        fi
+        if [ -z "$ver" ]; then
+            # fallback constant
+            ver="0.1.0"
+        fi
+        echo "pi-data $ver"
+        exit 0
+        ;;
+    *|--help|-h)
         echo "Usage: $0 {model|serial|config_txt|password|hostname|default-gateway}"
         exit 1
         ;;
