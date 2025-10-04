@@ -57,10 +57,6 @@ case $1 in
             # parse 'package (version) ...' from the first non-empty line robustly
             ver=$(awk 'NF && match($0, /^[^ ]+ \(([^(]+)\)/, m) { print m[1]; exit }' debian/changelog 2>/dev/null || true)
         fi
-        if [ -z "$ver" ]; then
-            # fallback constant
-            ver="0.1.0"
-        fi
         echo "pi-data $ver"
         exit 0
         ;;
