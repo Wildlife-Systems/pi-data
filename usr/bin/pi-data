@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 case $1 in
     model)
@@ -49,6 +49,20 @@ case $1 in
     default-gateway)
         ip route | grep default | awk '{print $3}'
         ;;
+    local-net-stats)
+        gw=$("$0" default-gateway)
+        if [ -z "$gw" ]; then
+            echo "error: no default gateway found" >&2
+            exit 1
+        fi
+        output=$(ping -O -i 0.2 -w 10 "$gw" 2>&1)
+        pct_drop=$(echo "$output" | grep -oP '\d+(?=% packet loss)')
+        rtt_line=$(echo "$output" | grep -oP 'rtt min/avg/max/mdev = \K.*(?= ms)')
+        mean=$(echo "$rtt_line" | cut -d'/' -f2)
+        jitter=$(echo "$rtt_line" | cut -d'/' -f4)
+        printf '{"percent_dropped":%s,"mean_ms":%s,"jitter_ms":%s}\n' \
+            "${pct_drop:-null}" "${mean:-null}" "${jitter:-null}"
+        ;;
     --version|-V)
         # try dpkg-parsechangelog (from dpkg-dev), otherwise parse first line of debian/changelog
         if command -v dpkg-parsechangelog >/dev/null 2>&1; then
@@ -61,7 +75,7 @@ case $1 in
         exit 0
         ;;
     --help|-h|*)
-        echo "Usage: $0 {model|serial|config_txt|password|hostname|default-gateway}"
+        echo "Usage: $0 {model|serial|config_txt|password|hostname|default-gateway|local-net-stats}"
         exit 1
         ;;
 esac
