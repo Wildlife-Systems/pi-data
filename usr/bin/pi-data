@@ -56,7 +56,7 @@ case $1 in
             exit 1
         fi
         output=$(ping -O -i 0.2 -w 10 "$gw" 2>&1)
-        pct_drop=$(echo "$output" | grep -oP '\d+(?=% packet loss)')
+        pct_drop=$(echo "$output" | grep -oP '[\d.]+(?=% packet loss)')
         rtt_line=$(echo "$output" | grep -oP 'rtt min/avg/max/mdev = \K.*(?= ms)')
         mean=$(echo "$rtt_line" | cut -d'/' -f2)
         jitter=$(echo "$rtt_line" | cut -d'/' -f4)

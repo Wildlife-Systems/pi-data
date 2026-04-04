@@ -1,3 +1,9 @@
+pi-data (0.1.3) UNRELEASED; urgency=medium
+
+  * Fix percent_dropped regex for decimal values
+
+ -- Edward Baker <edwab@unp-pi-12.nhm.ac.uk>  Sat, 04 Apr 2026 14:10:51 +0100
+
 pi-data (0.1.2) UNRELEASED; urgency=medium
 
   * Enable net-stats timer by default
