@@ -1,0 +1,5 @@
+_pi_data() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=($(compgen -W "model model_name serial config_txt password hostname default-gateway local-net-stats --version --help" -- "$cur"))
+}
+complete -F _pi_data pi-data

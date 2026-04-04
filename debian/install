@@ -1,1 +1,2 @@
 usr/bin/* usr/bin
+usr/share/bash-completion/completions/pi-data usr/share/bash-completion/completions
