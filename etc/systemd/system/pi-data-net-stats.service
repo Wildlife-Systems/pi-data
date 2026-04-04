@@ -1,0 +1,8 @@
+[Unit]
+Description=Collect local network statistics
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c '/usr/bin/pi-data local-net-stats >> /var/pi-data/local-net-stats.jsonl'

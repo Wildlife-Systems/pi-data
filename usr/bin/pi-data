@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 
 case $1 in
     model)
@@ -60,8 +60,9 @@ case $1 in
         rtt_line=$(echo "$output" | grep -oP 'rtt min/avg/max/mdev = \K.*(?= ms)')
         mean=$(echo "$rtt_line" | cut -d'/' -f2)
         jitter=$(echo "$rtt_line" | cut -d'/' -f4)
-        printf '{"percent_dropped":%s,"mean_ms":%s,"jitter_ms":%s}\n' \
-            "${pct_drop:-null}" "${mean:-null}" "${jitter:-null}"
+        ts=$(date +%s)
+        printf '{"timestamp":%s,"percent_dropped":%s,"mean_ms":%s,"jitter_ms":%s}\n' \
+            "$ts" "${pct_drop:-null}" "${mean:-null}" "${jitter:-null}"
         ;;
     --version|-V)
         # try dpkg-parsechangelog (from dpkg-dev), otherwise parse first line of debian/changelog

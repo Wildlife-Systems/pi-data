@@ -1,2 +1,4 @@
 usr/bin/* usr/bin
 usr/share/bash-completion/completions/pi-data usr/share/bash-completion/completions
+etc/systemd/system/pi-data-net-stats.service etc/systemd/system
+etc/systemd/system/pi-data-net-stats.timer etc/systemd/system

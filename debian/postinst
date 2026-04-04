@@ -1,7 +1,14 @@
 #!/bin/bash
 set -e
 
-# No need to chmod files here; dpkg sets file modes when installing.
+# Ensure data directory exists
+mkdir -p /var/pi-data
+
+# Reload systemd so the new timer/service are recognised.
+# The timer is disabled by default; enable with:
+#   systemctl enable --now pi-data-net-stats.timer
+systemctl daemon-reload || true
+
 #DEBHELPER#
 
 exit 0
