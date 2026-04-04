@@ -4,10 +4,9 @@ set -e
 # Ensure data directory exists
 mkdir -p /var/pi-data
 
-# Reload systemd so the new timer/service are recognised.
-# The timer is disabled by default; enable with:
-#   systemctl enable --now pi-data-net-stats.timer
+# Reload systemd and enable the net-stats timer by default.
 systemctl daemon-reload || true
+systemctl enable --now pi-data-net-stats.timer || true
 
 #DEBHELPER#
 
