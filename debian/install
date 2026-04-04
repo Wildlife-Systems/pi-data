@@ -2,3 +2,4 @@ usr/bin/* usr/bin
 usr/share/bash-completion/completions/pi-data usr/share/bash-completion/completions
 lib/systemd/system/pi-data-net-stats.service lib/systemd/system
 lib/systemd/system/pi-data-net-stats.timer lib/systemd/system
+etc/logrotate.d/pi-data-net-stats etc/logrotate.d

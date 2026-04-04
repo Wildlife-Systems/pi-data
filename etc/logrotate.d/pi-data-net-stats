@@ -1,0 +1,8 @@
+/var/pi-data/local-net-stats.jsonl {
+    weekly
+    rotate 4
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
