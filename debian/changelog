@@ -1,3 +1,17 @@
+pi-data (0.2.0) UNRELEASED; urgency=medium
+
+  * Add pi-geo, moved here from ws-node where it was ws-geoloc. Views and edits
+    /etc/geolocation, the GeoClue static location source, interactively or via
+    --lat/--lon/--alt/--acc, with --show to read the current values. A machine's
+    position is a property of the machine, not of the software deployed on it
+  * pi-geo(8) man page, renumbered from section 1 to match pi-data(8)
+  * Relicense from GPL-3+ to GPL-2+, matching the rest of WildlifeSystems
+  * Correct the copyright holder to Ed Baker. The package was attributed to
+    the Natural History Museum, but every commit since the repository was
+    created in May 2025 is his
+
+ -- Ed Baker <ed@ebaker.me.uk>  Sat, 12 Sep 2026 16:00:00 +0100
+
 pi-data (0.1.3) UNRELEASED; urgency=medium
 
   * Fix percent_dropped regex for decimal values
