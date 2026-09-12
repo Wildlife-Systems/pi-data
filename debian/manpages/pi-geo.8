@@ -21,6 +21,10 @@ pi-geo \- view and edit the static geolocation of a Raspberry Pi
 .B pi-geo \-\-show
 .RB [ \-\-file
 .IR path ]
+.br
+.B pi-geo \-\-json
+.RB [ \-\-file
+.IR path ]
 .SH DESCRIPTION
 .B pi-geo
 views and edits
@@ -38,9 +42,16 @@ section
 Without arguments the command prompts for each value in turn. Current values,
 if any, are offered as defaults and kept by pressing Enter. Each entry is
 checked for being a number and for being in range: latitude \-90 to 90,
-longitude \-180 to 180, altitude \-500 to 9000, accuracy 1 to 1000000. Accuracy
-is a confidence radius, so an unknown position is expressed as a large number:
-roughly 100 m for a house, 5000 m a village, 25000 m a city, 100000 m a region.
+longitude \-180 to 180, accuracy 0 or more. Altitude is unbounded. These are the
+ranges
+.BR ws_read_geolocation ()
+in libwildlifesystems enforces, so a file
+.B pi-geo
+accepts is one the WildlifeSystems sensor drivers can also read.
+.PP
+Accuracy is a confidence radius, so an unknown position is expressed as a large
+number: roughly 100 m for a house, 5000 m a village, 25000 m a city, 100000 m a
+region.
 .PP
 Given any of
 .BR \-\-lat ,
@@ -82,6 +93,23 @@ If it is not,
 says so after writing.
 .SH OPTIONS
 .TP
+.B \-\-json
+Print the current location as a GeoJSON Feature and exit: a Point geometry with
+the accuracy, if any, in
+.IR properties .
+Coordinate order is
+.RI [ longitude ", " latitude ", " altitude ],
+the reverse of the order the file is written in.
+.IP
+Unlike
+.BR \-\-show ,
+this cannot annotate a bad value, so it refuses to emit anything at all if any
+value is unusable, exiting 3. The output is formatted to match
+.BR ws_geolocation_geojson ()
+byte for byte, so a node's reported position and a sensor's resolved
+.I {{node}}
+compare exactly rather than approximately.
+.TP
 .BI \-\-lat " deg"
 Set the latitude, \-90 to 90, positive north. May also be spelled
 .BR \-\-latitude .
@@ -91,12 +119,12 @@ Set the longitude, \-180 to 180, positive east. May also be spelled
 .BR \-\-longitude .
 .TP
 .BI \-\-alt " m"
-Set the altitude in metres, \-500 to 9000. Defaults to 0 when the file holds no
+Set the altitude in metres. Defaults to 0 when the file holds no
 usable value. May also be spelled
 .BR \-\-altitude .
 .TP
 .BI \-\-acc " m"
-Set the accuracy radius in metres, 1 to 1000000. Defaults to 1000 when the file
+Set the accuracy radius in metres, 0 or more. Defaults to 1000 when the file
 holds no usable value. May also be spelled
 .BR \-\-accuracy .
 .PP
@@ -105,10 +133,20 @@ Each of the four takes its value as a separate argument
 or after an equals sign
 .RB ( \-\-lat=4 ).
 Any of them switches off prompting, and none may be combined with
-.BR \-\-show .
+.B \-\-show
+or
+.BR \-\-json ,
+which are themselves alternatives.
 .TP
 .B \-\-show
 Print the current values and exit. Does not prompt.
+.IP
+Every value is shown, with any that the sensor drivers would reject named
+beside it \- out of range, not a number, or not set. This is deliberately more
+forgiving than
+.BR \-\-json :
+the operator needs to see which value is wrong, not merely that one is. Exits 3
+if the location is unusable, so a script can tell.
 .TP
 .BI \-\-file " path"
 Operate on

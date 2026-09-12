@@ -5,6 +5,20 @@ pi-data (0.2.0) UNRELEASED; urgency=medium
     --lat/--lon/--alt/--acc, with --show to read the current values. A machine's
     position is a property of the machine, not of the software deployed on it
   * pi-geo(8) man page, renumbered from section 1 to match pi-data(8)
+  * pi-geo --json: print the location as a GeoJSON Feature, formatted to match
+    ws_geolocation_geojson() in libwildlifesystems byte for byte so a node's
+    reported position and a sensor's resolved "{{node}}" compare exactly
+  * pi-geo: adopt the library's ranges. Altitude is no longer capped at
+    -500..9000 and accuracy no longer required to be at least 1, because the
+    library accepts both and is what actually discards a location the drivers
+    cannot use
+  * pi-geo --show: validate as well as display. It previously printed an
+    out-of-range value without comment, so a file the drivers silently reject
+    looked fine, with nothing connecting that to an unresolved "{{node}}". It
+    now names the problem beside the value and exits 3, while still showing
+    every field so the operator can see which to fix
+  * pi-geo: one validation path shared by --show, --json, the command-line
+    options and the interactive prompt
   * Relicense from GPL-3+ to GPL-2+, matching the rest of WildlifeSystems
   * Correct the copyright holder to Ed Baker. The package was attributed to
     the Natural History Museum, but every commit since the repository was
